@@ -63,7 +63,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement subscribe function in Notification controller.`
     -   [x] Commit: `Implement unsubscribe function in Notification service.`
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -85,5 +85,11 @@ This is the place for you to write reflections:
 3. Menurut saya, meskipun kita dapat mengimplementasikan Singleton pattern untuk mengelola akses ke data `Subscriber`, kesulitan yang muncul karena mutability dan persyaratan thread-safety di Rust membuat implementasi Singleton yang aman menjadi cukup kompleks. `DashMap` sudah menyediakan solusi yang thread-safe secara bawaan dan mudah digunakan, sehingga menurut saya menggunakan `DashMap` lebih sederhana dan efektif daripada mengembangkan Singleton pattern sendiri yang harus memenuhi banyak constraint dari Rust.
 
 #### Reflection Publisher-2
+
+1. Menurut saya, pemisahan `Service` dan `Repository` dari `Model` sangat penting agar setiap komponen dalam aplikasi dapat memiliki tanggung jawab yang spesifik dan tidak tercampur-campur. `Model` seharusnya hanya berperan sebagai representasi data, sementara `Repository` menangani operasi penyimpanan dan pengambilan data, dan `Service` bertanggung jawab atas logika bisnis yang lebih kompleks. Dengan cara ini, ketika terjadi perubahan pada logika bisnis atau cara penyimpanan data, kita tidak perlu mengubah keseluruhan `Model`, sehingga proses pemeliharaan dan pengembangan aplikasi menjadi lebih mudah dan terstruktur.
+
+2. Jika hanya mengandalkan `Model` untuk menangani semua aspek, saya membayangkan bahwa kode di setiap `Model`, misalnya untuk `Product`, `Subscriber`, dan `Notification`, akan menjadi sangat kompleks karena harus meng-_handle_ penyimpanan data, logika bisnis, dan interaksi antar model secara langsung. Kompleksitas tersebut akan membuat setiap `Model` semakin sulit untuk dipahami dan dipelihara dan meningkatkan tingkat _coupling_ antar komponen. Hal ini tentu saja akan berdampak pada peningkatan potensi kesalahan dan kesulitan dalam proses debugging serta pengembangan fitur baru.
+
+3. Dari informasi yang saya tahu, penggunaan `Postman` sangat membantu dalam proses testing `API`. Walaupun saya belum terlalu mengeksplorasi `Postman` secara mendalam, dari yang saya ketahui alat ini memungkinkan saya untuk dengan mudah mengirim berbagai jenis HTTP request dan langsung melihat response yang diterima. Hal ini memudahkan verifikasi bahwa setiap endpoint berfungsi sesuai harapan. Selain itu, fitur seperti pengaturan _custom headers_, _authorization_, dan _environment variables_ memungkinkan simulasi berbagai skenario pengujian dengan lebih fleksibel dan efisien. Kemampuan untuk menyimpan koleksi endpoint juga memudahkan integrasi testing dalam proyek kelompok maupun pengembangan software di masa depan, sehingga saya merasa Postman merupakan alat yang sangat berguna dalam workflow pengembangan aplikasi.
 
 #### Reflection Publisher-3
