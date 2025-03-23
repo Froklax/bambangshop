@@ -56,7 +56,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement add function in Subscriber repository.`
     -   [x] Commit: `Implement list_all function in Subscriber repository.`
     -   [x] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,12 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+
+1. Menurut saya sendiri dalam konteks BambangShop sekarang, saat ini penggunaan struct model `Subscriber` sudah cukup karena fungsionalitas yang dibutuhkan relatif sederhana. Tidak ada banyak perilaku yang harus di-_override_ atau diperluas, sehingga _polymorphism_ via trait tidak benar-benar diperlukan. Namun, jika di masa depan sistem berkembang dan terdapat jenis-jenis _subscriber_ dengan perilaku berbeda, maka mengimplementasikan trait bisa mempermudah pengelolaan perbedaan tersebut dan meningkatkan fleksibilitas.
+
+2. Meskipun atribut seperti `id` pada `Product` dan `url` pada `Subscriber` bersifat unik, kita membutuhkan struktur data yang memungkinkan pencarian dan penghapusan dengan efisiensi yang lebih baik. Jika menggunakan `Vec`, pencarian untuk menemukan `Subscriber` tertentu akan membutuhkan pencarian linear yang berpotensi memakan waktu lebih lama. `DashMap` memberikan keuntungan karena menyediakan operasi lookup dan penghapusan dalam waktu konstan, sehingga lebih optimal dalam kasus ini.
+
+3. Menurut saya, meskipun kita dapat mengimplementasikan Singleton pattern untuk mengelola akses ke data `Subscriber`, kesulitan yang muncul karena mutability dan persyaratan thread-safety di Rust membuat implementasi Singleton yang aman menjadi cukup kompleks. `DashMap` sudah menyediakan solusi yang thread-safe secara bawaan dan mudah digunakan, sehingga menurut saya menggunakan `DashMap` lebih sederhana dan efektif daripada mengembangkan Singleton pattern sendiri yang harus memenuhi banyak constraint dari Rust.
 
 #### Reflection Publisher-2
 
