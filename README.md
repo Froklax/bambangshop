@@ -69,7 +69,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
     -   [x] Commit: `Implement publish function in Program service and Program controller.`
     -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -93,3 +93,9 @@ This is the place for you to write reflections:
 3. Dari informasi yang saya tahu, penggunaan `Postman` sangat membantu dalam proses testing `API`. Walaupun saya belum terlalu mengeksplorasi `Postman` secara mendalam, dari yang saya ketahui alat ini memungkinkan saya untuk dengan mudah mengirim berbagai jenis HTTP request dan langsung melihat response yang diterima. Hal ini memudahkan verifikasi bahwa setiap endpoint berfungsi sesuai harapan. Selain itu, fitur seperti pengaturan _custom headers_, _authorization_, dan _environment variables_ memungkinkan simulasi berbagai skenario pengujian dengan lebih fleksibel dan efisien. Kemampuan untuk menyimpan koleksi endpoint juga memudahkan integrasi testing dalam proyek kelompok maupun pengembangan software di masa depan, sehingga saya merasa Postman merupakan alat yang sangat berguna dalam workflow pengembangan aplikasi.
 
 #### Reflection Publisher-3
+
+1. Dalam tutorial ini, saya menggunakan variasi `Push` pada Observer Pattern. Setiap kali terjadi perubahan pada `Product` (misalnya create atau delete), `Publisher` langsung mengirimkan notifikasi ke setiap `Subscriber` yang relevan tanpa menunggu permintaan dari Subscriber.
+
+2. Jika kita menggunakan variasi `Pull`, keuntungannya adalah `Publisher` tidak perlu langsung mengirim notifikasi ke setiap `Subscriber` setiap kali terjadi perubahan, sehingga beban proses notifikasi di sisi server bisa berkurang. `Subscriber` sendiri akan mengambil data sesuai kebutuhan dan kapan saja mereka inginkan data terbaru. Tetapi, kelemahannya adalah `Subscriber` tidak mendapatkan update secara real-time karena harus secara aktif meminta data baru, sehingga bisa terjadi keterlambatan dalam mendapatkan informasi terbaru. Apabila `Subscriber` melakukan polling secara sering, hal tersebut justru bisa meningkatkan beban server dalam jangka panjang.
+
+3. Jika kita memutuskan untuk tidak menggunakan multi-threading dalam proses notifikasi, maka proses pengiriman notifikasi akan dilakukan secara berurutan. Hal ini berarti jika ada banyak `Subscriber` untuk suatu `product_type`, maka proses notifikasi akan menjadi sangat lambat dan memblokir jalannya proses lain pada aplikasi. Server akan sulit untuk meng-_handle_ request lain secara sekaligus, yang dapat mengurangi responsiveness dan performa aplikasi secara keseluruhan.
